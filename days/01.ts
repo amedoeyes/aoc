@@ -16,4 +16,4 @@ function part02() {
 	return elves.slice(0, 3).reduce((sum, value) => sum + value);
 }
 
-aoc.execute([part01, part02]);
+aoc.execute(part01, part02);

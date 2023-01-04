@@ -8,7 +8,7 @@ function addLeadingZero(number: number) {
 	return strNum.length === 1 ? strNumWithZero : strNum;
 }
 
-function execute(functions: (() => any)[]) {
+function execute<T>(...functions: { (): T }[]) {
 	console.time("time");
 	functions.forEach((func, index) =>
 		console.log(`part${addLeadingZero(index + 1)}:`, func())
@@ -16,7 +16,7 @@ function execute(functions: (() => any)[]) {
 	console.timeEnd("time");
 }
 
-function input(file: number) {
+function input(file: number): string {
 	return fs.readFileSync(
 		path.resolve(__dirname, `inputs/${addLeadingZero(file)}.txt`),
 		"utf-8"
