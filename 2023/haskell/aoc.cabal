@@ -26,3 +26,11 @@ executable 02_1
 executable 02_2
     import:  executable
     main-is: 02_2.hs
+
+executable 03_1
+    import:  executable
+    main-is: 03_1.hs
+
+executable 03_2
+    import:  executable
+    main-is: 03_2.hs
