@@ -7,7 +7,9 @@ common warnings
 
 common executable
     import:           warnings
-    build-depends:    base ^>=4.17.2.1, split
+    build-depends:    base ^>=4.17.2.1,
+                      containers ^>=0.6.7,
+                      split
     hs-source-dirs:   src
     default-language: GHC2021
 
@@ -34,3 +36,11 @@ executable 03_1
 executable 03_2
     import:  executable
     main-is: 03_2.hs
+
+executable 04_1
+    import:  executable
+    main-is: 04_1.hs
+
+executable 04_2
+    import:  executable
+    main-is: 04_2.hs
