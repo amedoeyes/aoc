@@ -1,0 +1,35 @@
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: c++20
+
+ColumnLimit: 100
+UseTab: Always
+TabWidth: 2
+IndentWidth: 2
+BracedInitializerIndentWidth: 2
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
+AccessModifierOffset: -2
+
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLambdasOnASingleLine: None
+AllowShortLoopsOnASingleLine: true
+
+IndentCaseLabels: true
+AlignAfterOpenBracket: BlockIndent
+AlignEscapedNewlines: Right
+QualifierAlignment: Left
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+
+PenaltyReturnTypeOnItsOwnLine: 1000
+AlwaysBreakTemplateDeclarations: true
+BreakConstructorInitializers: AfterColon
+
+BinPackArguments: false
+PackConstructorInitializers: CurrentLine
+
+IncludeBlocks: Regroup

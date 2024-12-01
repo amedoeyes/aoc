@@ -1,2 +1,3 @@
 node_modules
-2023/haskell/dist-newstyle
+dist-newstyle
+build
