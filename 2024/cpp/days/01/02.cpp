@@ -1,35 +1,34 @@
-#include "utility.hpp"
-
-#include <bits/ranges_algo.h>
+#include <algorithm>
 #include <cstdint>
 #include <fstream>
 #include <print>
-#include <regex>
-#include <string>
+#include <ranges>
 #include <unordered_map>
 #include <vector>
 
-auto main() -> int {
-	std::ifstream file = readfile("./days/01/input.txt");
+auto main(int /*argc*/, char** argv) -> int {
+	std::ifstream file(argv[1]);
 
-	std::vector<int32_t> left;
-	std::vector<int32_t> right;
+	std::vector<int64_t> left;
+	std::unordered_map<int64_t, int64_t> right_freq;
 
-	for (std::string line; std::getline(file, line);) {
-		const std::regex pattern("\\s{3}");
-		std::sregex_token_iterator it(line.begin(), line.end(), pattern, -1);
-		left.push_back(std::stoi(it->str()));
-		right.push_back(std::stoi((++it)->str()));
+	while (!file.eof()) {
+		file >> left.emplace_back(0);
+		int64_t r = 0;
+		file >> r;
+		right_freq[r]++;
 	}
 
-	std::unordered_map<int32_t, int32_t> freq_map;
-	for (const auto& id : right) {
-		freq_map[id]++;
-	}
-
-	int32_t similarity_score = std::ranges::fold_left(left, 0, [&freq_map](int32_t acc, int32_t id) {
-		return acc + (id * freq_map[id]);
-	});
+	int64_t similarity_score = std::ranges::fold_left(
+		std::views::transform(
+			left,
+			[&right_freq](int64_t l) {
+				return l * right_freq[l];
+			}
+		),
+		0,
+		std::plus<>()
+	);
 
 	std::println("{}", similarity_score);
 
