@@ -1,14 +1,11 @@
-#include <algorithm>
 #include <charconv>
 #include <cstdint>
 #include <cstdlib>
 #include <fstream>
 #include <print>
 #include <ranges>
-#include <span>
 #include <string>
 #include <string_view>
-#include <tuple>
 #include <vector>
 
 auto parse_line(std::string_view line) -> std::vector<int64_t> {
@@ -22,28 +19,36 @@ auto parse_line(std::string_view line) -> std::vector<int64_t> {
 				 | std::ranges::to<std::vector<int64_t>>();
 }
 
-auto is_safe(std::span<const int64_t> levels) -> bool {
-	auto pairs = levels | std::views::adjacent<2>;
-	bool const is_inc = std::ranges::all_of(pairs, [](std::tuple<int64_t, int64_t> pair) {
-		return std::get<0>(pair) < std::get<1>(pair);
-	});
-	bool const is_dec = std::ranges::all_of(pairs, [](std::tuple<int64_t, int64_t> pair) {
-		return std::get<0>(pair) > std::get<1>(pair);
-	});
-	bool const valid_diff = std::ranges::all_of(pairs, [](std::tuple<int64_t, int64_t> pair) {
-		return std::abs(std::get<0>(pair) - std::get<1>(pair)) <= 3;
-	});
-	return (is_inc || is_dec) && valid_diff;
-}
+auto in_range(int64_t n) -> bool {
+	int64_t const abs = std::abs(n);
+	return abs >= 1 && abs <= 3;
+};
+
+auto same_sign(int64_t a, int64_t b) -> bool {
+	return a * b > 0;
+};
 
 auto main(int /*argc*/, char** argv) -> int {
 	std::ifstream file(argv[1]);
 
 	int64_t safe_reports = 0;
 	for (std::string line; std::getline(file, line);) {
-		const std::vector<int64_t> levels = parse_line(line);
-		if (is_safe(levels)) {
+		const std::vector<int64_t> diffs = parse_line(line)					 //
+																			 | std::views::adjacent<2> //
+																			 | std::views::transform([](auto pair) {
+																					 return std::get<0>(pair) - std::get<1>(pair);
+																				 }) //
+																			 | std::ranges::to<std::vector<int64_t>>();
+		uint64_t left = 0;
+		for (size_t i = 0; i < diffs.size(); ++i) {
+			if (!in_range(diffs[i]) || (i != 0 && !same_sign(diffs[i], diffs[i - 1]))) {
+				break;
+			}
+			++left;
+		}
+		if (left == diffs.size()) {
 			++safe_reports;
+			continue;
 		}
 	}
 
