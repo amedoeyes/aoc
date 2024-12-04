@@ -1,5 +1,4 @@
-Checks:
-  -*,
+Checks: -*,
   bugprone-*,
   -bugprone-easily-swappable-parameters,
   cert-*,
@@ -22,6 +21,7 @@ Checks:
   performance-*,
   portability-*,
   readability-*,
+  -readability-function-cognitive-complexity,
   -readability-identifier-length,
   -readability-magic-numbers,
   -readability-uppercase-literal-suffix,
