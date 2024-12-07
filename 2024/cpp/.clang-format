@@ -11,11 +11,14 @@ ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: 2
 AccessModifierOffset: -2
 
+AllowShortBlocksOnASingleLine: Empty
+# AllowShortCaseExpressionOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
+AllowShortCompoundRequirementOnASingleLine: true
 AllowShortEnumsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
+AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
-AllowShortLambdasOnASingleLine: None
+AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 
 IndentCaseLabels: true
@@ -28,6 +31,9 @@ ReferenceAlignment: Pointer
 PenaltyReturnTypeOnItsOwnLine: 1000
 AlwaysBreakTemplateDeclarations: true
 BreakConstructorInitializers: AfterColon
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeTernaryOperators: true
+# BreakBinaryOperations: OnePerLine
 
 BinPackArguments: false
 PackConstructorInitializers: CurrentLine
