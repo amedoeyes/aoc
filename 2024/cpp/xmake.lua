@@ -7,5 +7,5 @@ add_rules("plugin.compile_commands.autoupdate", { lsp = "clangd", outputdir = "b
 for _, file in ipairs(os.files("days/**.cpp")) do
 	local name = path.basename(file)
 	local parent = path.directory(file):match("([^/]+)/?$")
-	target(parent .. "_" .. name, { files = file, includedirs = "./" })
+	target(parent .. "_" .. name, { files = file, includedirs = "include" })
 end
