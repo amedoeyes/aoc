@@ -16,6 +16,9 @@ struct vector<2, T> {
 	};
 };
 
+template <typename T>
+vector(T, T) -> vector<2, T>;
+
 // unary
 
 template <typename T>
