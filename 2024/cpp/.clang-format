@@ -52,7 +52,7 @@ AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 
-BreakAfterAttributes: Always
+BreakAfterAttributes: Never
 BreakAfterReturnType: Automatic
 BreakArrays: false
 BreakBeforeBinaryOperators: NonAssignment
